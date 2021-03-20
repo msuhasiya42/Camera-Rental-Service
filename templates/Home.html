@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% if request.session.name1 orrequest.session.name%}
+     Welcome User {{name1}}
+
+{% else%}
+     not logged in yet...
+{% endif %}
+
+
+{%  %}
+     Welcome Vendor {{name}}
+{% else%}
+     not logged in yet...
+{% endif %}
+<br>
+
+{% if request.session.name1 or request.session.name %}
+     logout
+{% else %}
+     login and sign up html
+{% endif %}
+
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="{% static 'home.css'%}">
+    <link href='https://fonts.googleapis.com/css?family=Stylish' rel='stylesheet'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+
+<!-- Style for navigation bar -->
+    <style>
+
+.name{
+   text-align: center;
+    color:black;
+    font-family: 'Stylish';
+   font-size: 30px;
+   margin-top: 10px;
+   border:1px solid black;
+   background-color: dodgerblue;
+}
+
+body {margin: 0;}
+
+ul.topnav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #1a1a1a;
+}
+
+ul.topnav li {float: left;}
+
+ul.topnav li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+ul.topnav li a:hover:not(.active) {background-color:#ffffff; color:#111}
+
+ul.topnav li a.active {background-color:#fff; color:#111}
+
+ul.topnav li.right {float: right;}
+
+@media screen and (max-width: 600px) {
+  ul.topnav li.right,
+  ul.topnav li {float: none;}
+}
+</style>
+  </head>
+
+
+
+
+
+
+  <!-- Body -->
+  <body>
+
+  <ul class="topnav">
+  <h1 style="color:white; font-family: 'Stylish'; font-size: 40px;text-align: center; margin-left:20px; margin-top:10px; margin-bottom:10px">   CAMERA RENTAL SERVICE  <img src="{% static 'smallcamera.png'%}" style=" width:60px;">   </h1>
+</ul>
+
+   <div class="hero">
+    <div class="form-box" >
+       <!-- login heading -->
+      <div class="name">
+            LOGIN
+      </div>
+
+      <div class="socialIcon">
+        <a href="https://www.instagram.com/"><img src="{% static 'insta.png' %}" alt="" height="40px"></a>
+        <a href="https://www.facebook.com/"><img src="{% static 'fb.png' %}" alt="" height="40px"></a>
+        <a href="https://twitter.com/?lang=en"><img src="{% static 'twit.png' %}" alt="" height="32px"></a>
+      </div>
+
+      <form class="inputGroup" action="/login/" method="post" id="login" > {% csrf_token %}
+        <select name="usertype">
+            <option value="user">User</option>
+            <option value="vendor">Vendor</option>
+        </select>
+
+        <input type="email" placeholder="Email id" class="inputField" name="email" value="" required>
+        <input type="password" placeholder="Password" class="inputField" name="password" value="" required>
+        <input type="checkbox" class="checkBox" name="checkbox" value=""><span>Remember Password</span>
+        <button type="submit" class="submitBtn" name="button">Log In</button>
+      </form>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+
+         $(document).ready(function()
+              {
+                 $(".togglebtn2").click(function()
+                  {
+                      $("#btn").css("left","110px")
+                      $("#login").css("left","-400px")
+                      $("#regis").css("left","50px")
+                  });
+
+                  $(".togglebtn1").click(function()
+                   {
+                       $("#btn").css("left","0")
+                       $("#login").css("left","50px")
+                       $("#regis").css("left","450px")
+                   });
+              });
+
+  </script>
+
+  </body>
+</html>
