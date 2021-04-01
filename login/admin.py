@@ -5,11 +5,11 @@ from django.contrib import admin
 
 from .models import vendorCustomer,userCustomer
 
-class adminvendor(admin.ModelAdmin):
+class adminvendorCustomer(admin.ModelAdmin):
     #to show the details outside
     list_display = ["full_name"]
 
-admin.site.register(vendorCustomer,adminvendor)
+admin.site.register(vendorCustomer,adminvendorCustomer)
 admin.site.register(userCustomer)
 
 

@@ -54,8 +54,8 @@ ul.topnav li.right {float: right;}
   </head>
 
   <!-- Body -->
+
   <body>
-   
   <ul class="topnav">
   <h1 style="color:white; font-family: 'Stylish'; font-size: 40px;text-align: center; margin-left:20px; margin-top:10px; margin-bottom:10px">   CAMERA RENTAL SERVICE <img src="{% static 'smallcamera.png' %}" style=" width:60px;">  </h1>
 </ul>
@@ -63,7 +63,7 @@ ul.topnav li.right {float: right;}
    <div class="hero">
          
     <div class="form-box">
-       
+       {% block form %}
       <div class="name">
             REGISTER
       </div>
@@ -75,7 +75,7 @@ ul.topnav li.right {float: right;}
       </div>
 
       <form class="inputGroup" action="/regis/" method="post" id="login" method="post" enctype="multipart/form-data" > {% csrf_token %}
-        <select name="usertype">
+        <select id="usertype" name="usertype">
             <option value="user">User</option>
             <option value="vendor">Vendor</option>
         </select>
@@ -85,45 +85,36 @@ ul.topnav li.right {float: right;}
         <input type="email" placeholder="Email id" class="inputField" name="email" value="" required>
         <input type="password" placeholder="Password" class="inputField" name="password" value="" required> <br> <br>
         <div id="demo">
-          <label>Camera image:</label> <br> <input type="file" id="image" name="photo"  accept="image/*"> <br>
+          <label for="img">Adhaar image:</label> <br><input disabled="true" type="file" id="img" name="img" accept="image/*"> <br>
         </div>
-        <input type="checkbox" class="checkBox" name="" value=""><span>I Agree To The Terms And Consitions</span>
+        <br>
+<!--        <input type="checkbox" class="checkBox" name="" value=""><span>I Agree To The Terms And Consitions</span>-->
         <button type="submit" class="submitBtn" name="button">Register</button>
+        <br> <br> <br> <br> <br> <br>
+        <span style="font-size:16px;">Already have account? <a href="/login/" style="text-decoration: none; color:dodgerblue;">Log in</a></span>
       </form>
-      
+      {% endblock %}
     </div>
+   </div>
+  </body>
 
-  </div>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
    <script type="text/javascript">
 
-         $(document).ready(function()
-              {
-                 $(".togglebtn2").click(function()
-                  {
-                      $("#btn").css("left","110px")
-                      $("#login").css("left","-400px")
-                      $("#regis").css("left","50px")
-                  });
 
-                  $(".togglebtn1").click(function()
-                   {
-                       $("#btn").css("left","0")
-                       $("#login").css("left","50px")
-                       $("#regis").css("left","450px")
-                   });
-              });
+          var el = document.getElementById('usertype');
+          image = document.getElementById('img');
 
+            if(el){
+                    el.addEventListener('change', function() {
 
-         document.getElementById('usertype').addEventListener('change', function() {
-
-             if (this.value == 'vendor') {
-                    document.getElementById('image').disabled = false;
+             if (el.value == 'vendor') {
+                      image.disabled = false;
                                   }
-
-});
+             if (el.value == 'user') {
+                       image.disabled = true;
+                  }
+        });
+      }
   </script>
-
-
-  </body>
 </html>
