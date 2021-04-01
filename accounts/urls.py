@@ -4,5 +4,5 @@ from .import views
 
     #Blank for home page
 urlpatterns = [
-    path('loginreg/',views.loginreg, name= 'loginRegis'),
+    path('accountHome/',views.accountHome, name= 'Home'),
 ]

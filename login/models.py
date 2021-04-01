@@ -5,14 +5,15 @@ from django.db import models
 #always migrate database after making changes
 class vendorCustomer(models.Model):
     full_name=models.CharField(max_length=20)
-    mobile_no = models.CharField(max_length=10,unique=True)
-    email= models.EmailField(max_length=50,unique=True)
+    mobile_no = models.CharField(max_length=10)
+    email= models.EmailField(primary_key=True,max_length=50)
     password= models.CharField(max_length=500)
     camera_image = models.ImageField(upload_to="upload")
 
     def __str__(self):
         return self.email
 
+# user customer model
 class userCustomer(models.Model):
     full_name=models.CharField(max_length=20)
     mobile_no = models.CharField(max_length=10)
@@ -21,4 +22,9 @@ class userCustomer(models.Model):
 
     def __str__(self):
         return self.email
+
+
+
+
+
 

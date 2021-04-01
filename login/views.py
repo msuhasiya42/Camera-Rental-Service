@@ -19,30 +19,29 @@ def login(request):
         if usertype == 'vendor':
 
             #checks email from the databases with form email
-            valid = vendorCustomer.objects.get(email=email)
+            valid = vendorCustomer.objects.get(pk=email)
             print(valid)
             #to check password from the DB
             flag = check_password(password,valid.password)
             if flag:
-                 name = valid.full_name
+                 vendorname = valid.full_name
                  #to create session
-                 request.session["name"]= name
-                 print(request.session["name"])
+                 request.session["vendorname"]= vendorname
+                 return render(request,'Home.html',{"user":vendorname})
 
-                 return render(request,'Home.html',{"user":name})
             else:
                  return HttpResponse("invalid user...")
         else:
             # checks email from the databases with form email
-            valid = userCustomer.objects.get(email=email)
+            valid = userCustomer.objects.get(pk=email)
             flag = check_password(password, valid.password)
             if flag:
-                name1 = valid.full_name
-                request.session["name1"] = name1
-                print(request.session["name1"])
-                return render(request, 'Home.html', {"user": name1})
+                username = valid.full_name
+                request.session["username"] = username
+                return render(request, 'Home.html', {"user": username})
             else:
                 return HttpResponse("invalid user...")
+
 
     else:
         return render(request,'login.html')
@@ -60,8 +59,8 @@ def regis(request):
         #first name of variable from the models table and then variable name from the views page
 
         if usertype=='vendor':
-            photo = request.FILES['photo']
-            customer = vendorCustomer(full_name=fullname,mobile_no=phoneno, email=email, password=hashpassword, camera_image=photo)
+            photo = request.FILES['img']
+            customer =vendorCustomer(full_name=fullname,mobile_no=phoneno, email=email, password=hashpassword, camera_image=photo)
             customer.save()
             return render(request, 'login.html')
         else:
