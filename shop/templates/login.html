@@ -1,0 +1,38 @@
+<!--for inheriting the regis-->
+{% extends "regis.html "%}
+{% block form %}
+<!--for loading the static files-->
+{% load static %}
+<div class="name">
+            LOGIN
+      </div>
+
+      <div class="socialIcon">
+        <a href="https://www.instagram.com/"><img src="{% static 'insta.png' %}" alt="" height="40px"></a>
+        <a href="https://www.facebook.com/"><img src="{% static 'fb.png' %}" alt="" height="40px"></a>
+        <a href="https://twitter.com/?lang=en"><img src="{% static 'twit.png' %}" alt="" height="32px"></a>
+      </div>
+<!-- form -->
+      <form class="inputGroup" action="/login/" method="post" id="login" > {% csrf_token %}
+        <select id="usertype" name="usertype">
+            <option value="user">User</option>
+            <option value="vendor">Vendor</option>
+        </select>
+
+        <input type="email" placeholder="Email id" class="inputField" name="email" value="" required>
+        <input type="password" placeholder="Password" class="inputField" name="password" value="" required> <br> <br>
+        {% if error %}
+          <div class="alert alert-danger" style=" font-size:14px; color: red; font-family: sans-serif;" role="alert">
+            {{error}}
+
+        </div>
+      {%endif%}
+           <br>
+<!--        <input type="checkbox" class="checkBox" name="checkbox" value=""> <span id="span">remember password</span>-->
+        <button type="submit" class="submitBtn" name="button">Log In</button>
+        <br> <br> <br> <br> <br> <br>
+        <span style="font-size:16px;">Don't have account? <a href="/regis/" style="text-decoration: none; color:dodgerblue;" >Sign up</a></span>
+      </form>
+      {% endblock %}
+
+
