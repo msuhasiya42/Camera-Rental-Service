@@ -7,7 +7,7 @@ class userCustomer(models.Model):
     password = models.CharField(max_length=500)
 
     def __str__(self):
-        return self.full_name
+        return self.email
 
     def isExist1(self):
         if userCustomer.objects.filter(email=self.email):

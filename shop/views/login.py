@@ -37,9 +37,10 @@ class login(View):
             flag = check_password(password, customer.password)
             if flag:
                 vendorname = customer.full_name
+                email = customer.email
                 # to create session we can also use other attribute
                 # rather than name
-                request.session["vendorname"] = vendorname
+                request.session["vendorname"] = email
 
                 return redirect('home')
             else:
@@ -55,7 +56,8 @@ class login(View):
             flag = check_password(password,customer.password)
             if flag:
                 username = customer.full_name
-                request.session["username"] = username
+                email = customer.email
+                request.session["username"] = email
 
                 return redirect('home')
 

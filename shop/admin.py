@@ -8,7 +8,7 @@ from .models.product import Product
 from .models.category import Category
 from .models.vendorCustomer import vendorCustomer
 from .models.userCustomer import userCustomer
-from .models.orders import Order
+from .models.order import Order
 
 
 class AdminProduct(admin.ModelAdmin):

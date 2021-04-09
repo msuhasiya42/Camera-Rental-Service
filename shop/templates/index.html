@@ -37,6 +37,7 @@
 <!--        footer : contains the add to cart and quantity-->
         {% if product|isInCart:request.session.cart %}
         <div class="row " >
+<!--            minus button-->
 <!--            <form action="/" class="col-2" method="post">-->
 <!--                {% csrf_token %}-->
 <!--                <input hidden name="product" type="text" value="{{product.id}}">-->
@@ -44,7 +45,8 @@
 <!--                <input type="submit" value="-" class="btn btn-block btn-secondary">-->
 <!--            </form>-->
             <div class="text-center col"><label style="color:green">Added into cart</label></div>
-<!--            <form action="/"class="col-2" method="post"> {% csrf_token %}-->
+<!--            plus button
+<form action="/"class="col-2" method="post"> {% csrf_token %}-->
 <!--                <input hidden name="product" type="text" value="{{product.id}}">-->
 <!--                <input type="submit" value="+" class="btn btn-block btn-secondary">-->
 <!--            </form>-->

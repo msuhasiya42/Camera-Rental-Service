@@ -30,7 +30,11 @@ class home(View):
         data = {}
         data['categories'] = categories
         data['products'] = products
-        print("you are:", request.session.get('fullname'))
+        if request.session.get('vendorname'):
+            print("you are:", request.session.get('vendorname'))
+        else:
+            print("You are:",request.session.get('username'))
+
         return render(request, 'index.html', data)
 
     def post(self, request):
