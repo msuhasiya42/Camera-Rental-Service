@@ -15,11 +15,12 @@ class Checkout(View):
     def post(self, request):
         address = request.POST.get('address')
         phone = request.POST.get('phone')
+        rent_date = request.POST.get('rent_date')
+        return_date = request.POST.get('return_date')
         customer = request.session.get('username')
         cart = request.session.get('cart')
         products = Product.get_products_by_id(list(cart.keys()))
         print(address, phone, customer, cart, products)
-
 
         for product in products:
             order = Order(
@@ -29,8 +30,9 @@ class Checkout(View):
                 customer=userCustomer(email=customer),
                 price=product.price,
                 address=address,
-                phone=phone)
-
+                phone=phone,
+                rent_date=rent_date,
+                return_date=return_date)
 
             order.placeOrder()
 

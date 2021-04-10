@@ -8,6 +8,7 @@ from .views.home import home
 from .views.cart import Cart
 from .views.checkout import Checkout
 from .views.orders import OrderView
+from shop.middlewares.auth import auth_middleware
 
 # Blank for home page
 urlpatterns = [
@@ -17,7 +18,7 @@ urlpatterns = [
     path('logout/',logout, name='logout'),
     path('cart/',Cart.as_view(), name='cart'),
     path('checkout/',Checkout.as_view(), name='checkout'),
-    path('orders/', OrderView.as_view(), name='Orders'),
+    path('orders/', auth_middleware(OrderView.as_view()) , name='Orders'),
 
 
 ]

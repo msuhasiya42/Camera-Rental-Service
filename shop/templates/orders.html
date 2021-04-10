@@ -4,7 +4,7 @@
 <!--loading filters-->
 {% load cart %}
 {% load custom_filter %}
-<div class="container bg-light">
+<div class="container bg-primary">
     <div class="border rounded p-4 m-4 bg-light">
       <p class="text-center pl-4 ml-4 display-4">Your Orders</p>
         <table class="table">
@@ -13,20 +13,32 @@
       <th scope="col">Sno</th>
         <th scope="col">Image</th>
       <th scope="col">Product</th>
+      <th scope="col">Rent Date</th>
+      <th scope="col">Return Date</th>
       <th scope="col">Price</th>
         <th scope="col">Total</th>
+        <th scope="col">Status</th>
     </tr>
   </thead>
   <tbody>
-        {% for product in cart %}
+        {% for order in orders %}
     <tr class="">
 
       <td >{{forloop.counter}}</td>
-        <td><img style="height:80px;" src="{{product.image.url}}" class="rounded-circle " alt=""></td>
-      <td>{{product.name}}</td>
-      <td>{{product.price|currency}}</td>
+        <td><img style="height:80px;" src="{{order.product.image.url}}" class="rounded-circle " alt=""></td>
+      <td>{{order.product.name}}</td>
+      <td>{{order.rent_date}}</td>
+      <td>{{order.return_date}}</td>
+      <td>{{order.product.price|currency}}</td>
 <!--      <td>{{product|cart_quantity:request.session.cart}}</td>-->
-        <td>{{product|price_total:request.session.cart|currency}}</td>
+<!--        <td>{{order.product|price_total:request.session.cart|currency}}</td>-->
+        <td>{{order.quantity|multiply:order.price|currency}}</td>
+<!--        <td>{{order.order_status}}</td>-->
+            {% if order.order_status %}
+              <td small class=" ">Completed</td>
+            {% else %}
+              <td small class="">Pending</td>
+            {% endif %}
     </tr>
      {%endfor%}
 

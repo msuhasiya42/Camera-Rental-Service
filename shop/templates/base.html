@@ -59,7 +59,10 @@
         </li>
 <!--           cart -->
            <li class="nav-item">
-          <a class="nav-link active " aria-current="page" href="/cart"> Cart</a>
+          <a class="nav-link active " aria-current="page" href="/cart"> Cart
+             <span class="badge badge-info">{{request.session.cart.keys|length}}</span>
+              <span></span>
+          </a>
         </li>
            <!--           orders-->
             <li class="nav-item">
@@ -71,7 +74,10 @@
                   {% else %}
 <!--           cart-->
             <li class="nav-item">
-          <a class="nav-link active " aria-current="page" href="/cart"> Cart</a>
+          <a class="nav-link active " aria-current="page" href="/cart"> Cart
+             <span class="badge badge-info">{{request.session.cart.keys|length}}</span>
+              <span></span>
+          </a>
         </li>
 
            <li class="nav-item">

@@ -6,7 +6,7 @@ from django.contrib.auth.hashers import check_password, make_password
 
 # import databases tables
 
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 
 # Create your views here.
 from django.shortcuts import render
@@ -18,12 +18,14 @@ from django.views import View
 
 
 class login(View):
+    return_url=None
 
     def get(self, request):
+        login.return_url = request.GET.get('return_url')
         return render(request, 'login.html')
 
     def post(self, request):
-
+        login.return_url = request.GET.get('return_url')
         usertype = request.POST.get('usertype')
         email = request.POST.get('email')
         password = request.POST.get('password')
@@ -41,8 +43,11 @@ class login(View):
                 # to create session we can also use other attribute
                 # rather than name
                 request.session["vendorname"] = email
-
-                return redirect('home')
+                if login.return_url:
+                    return HttpResponseRedirect(login.return_url)
+                else:
+                    login.return_url = None
+                    return redirect('home')
             else:
                 errormessage = 'Invalid Email or Password'
                 return render(request, 'login.html', {
@@ -58,8 +63,11 @@ class login(View):
                 username = customer.full_name
                 email = customer.email
                 request.session["username"] = email
-
-                return redirect('home')
+                if login.return_url:
+                    return HttpResponseRedirect(login.return_url)
+                else:
+                    login.return_url=None
+                    return redirect('home')
 
             else:
                 errormessage = 'Invalid Email or Password'
