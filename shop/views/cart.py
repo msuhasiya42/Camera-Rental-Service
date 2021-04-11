@@ -25,3 +25,16 @@ class Cart(View):
         print(products)
         return render(request, 'cart.html',{'cart': products })
 
+    def post(self,request):
+        # ids = list(request.session.get('cart').keys())
+        # products = Product.get_products_by_id(ids)
+        product = request.POST.get('product')
+        print(product)
+        cart = request.session.get('cart')
+        if cart:
+            cart.pop(product)
+
+        request.session['cart'] = cart
+        print(request.session['cart'])
+        return redirect('cart')
+

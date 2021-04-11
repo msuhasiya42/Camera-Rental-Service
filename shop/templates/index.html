@@ -31,21 +31,29 @@
         <p class="card-text"><label style="color:green">Price :</label> {{product.price|currency}}</p>
 
 <!--           it is filter for cart-->
-           {{ product|isInCart:request.session.cart }}
+<!--           {{ product|isInCart:request.session.cart }}-->
 
        </div>
 <!--        footer : contains the add to cart and quantity-->
         {% if product|isInCart:request.session.cart %}
         <div class="row " >
 <!--            minus button-->
-<!--            <form action="/" class="col-2" method="post">-->
+<!--            <form action="/#{{product.id}}" class="col-2" method="post">-->
 <!--                {% csrf_token %}-->
 <!--                <input hidden name="product" type="text" value="{{product.id}}">-->
 <!--                <input hidden name="product" type="text" value="True" name="remove">-->
-<!--                <input type="submit" value="-" class="btn btn-block btn-secondary">-->
+<!--                <input type="submit" value="Remove" class="btn btn-block btn-secondary">-->
+
 <!--            </form>-->
+            <div class="d-flex justify-content-between">
+
+                <!-- price details -->
+<!--                <p class="mb-0 mr-5"><span><strong id="summary">{{product.price}}</strong></span></p>-->
+              </div>
+
             <div class="text-center col"><label style="color:green">Added into cart</label></div>
-<!--            plus button
+
+            <!--            plus button
 <form action="/"class="col-2" method="post"> {% csrf_token %}-->
 <!--                <input hidden name="product" type="text" value="{{product.id}}">-->
 <!--                <input type="submit" value="+" class="btn btn-block btn-secondary">-->
