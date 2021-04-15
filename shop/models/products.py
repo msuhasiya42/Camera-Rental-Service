@@ -1,31 +1,38 @@
 from django.db import models
 from .category import Category
 
-class Product(models.Model):
+class Products(models.Model):
     name = models.CharField(max_length=50)
     price = models.IntegerField(default=0)
     description = models.CharField(max_length=200, default='')
     image = models.ImageField(upload_to='upload/products/')
     #cascade -> if we delete category then all products of that category will be deleted
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default=1)
+    available = models.BooleanField(default=True)
 
     def __str__(self):
         return self.name
 
+    # def saveAvail(self):
+    #     self.save()
 
     @staticmethod
     def get_all_products():
-        return Product.objects.all()
+        return Products.objects.all()
 
     @staticmethod
     def get_all_products_by_id(category_id):
         if category_id:
-            return Product.objects.filter(category=category_id)
+            return Products.objects.filter(category= category_id)
 
         else:
-            return Product.get_all_products()
+            return Products.get_all_products()
 
     @staticmethod
     def get_products_by_id(ids):
-        return Product.objects.filter(id__in=ids)
+        return Products.objects.filter(id__in = ids)
+
+    # @staticmethod
+    # def get_product_by_name(name):
+    #     return Product.objects.filter(name = name)
 
