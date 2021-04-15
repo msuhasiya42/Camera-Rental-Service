@@ -6,11 +6,11 @@ from django.contrib.auth.hashers import check_password, make_password
 
 # import databases tables
 
-from django.http import HttpResponse,HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 
 # Create your views here.
 from django.shortcuts import render
-from shop.models.product import Product
+from shop.models.products import Products
 from shop.models.category import Category
 from shop.models.vendorCustomer import vendorCustomer
 from shop.models.userCustomer import userCustomer
@@ -18,7 +18,7 @@ from django.views import View
 
 
 class login(View):
-    return_url=None
+    return_url = None
 
     def get(self, request):
         login.return_url = request.GET.get('return_url')
@@ -43,6 +43,7 @@ class login(View):
                 # to create session we can also use other attribute
                 # rather than name
                 request.session["vendorname"] = email
+
                 if login.return_url:
                     return HttpResponseRedirect(login.return_url)
                 else:
@@ -58,7 +59,7 @@ class login(View):
             print(customer)
             # checks email from the databases with form email
 
-            flag = check_password(password,customer.password)
+            flag = check_password(password, customer.password)
             if flag:
                 username = customer.full_name
                 email = customer.email
@@ -66,12 +67,12 @@ class login(View):
                 if login.return_url:
                     return HttpResponseRedirect(login.return_url)
                 else:
-                    login.return_url=None
+                    login.return_url = None
                     return redirect('home')
 
             else:
                 errormessage = 'Invalid Email or Password'
-                return render(request,'login.html',{
+                return render(request, 'login.html', {
                     'error': errormessage
                 })
 
@@ -81,6 +82,29 @@ class login(View):
                 'error': errormessage
             })
 
+
 def logout(request):
+    print(request.session.get('username'))
     request.session.clear()
     return redirect('login')
+
+
+def userprofile(request):
+    if request.session.get('vendorname'):
+        email = request.session.get('vendorname')
+        print(email)
+        customer = userCustomer.get_customer_by_email(email)
+        # print("you are:", request.session.get('vendorname'))
+        return render(request, 'userprofile.html',{
+            'customer':customer
+        })
+    else:
+        email = request.session.get('username')
+        customer = userCustomer.get_customer_by_email(email)
+        # print("You are:", request.session.get('username'))
+        return render(request, 'userprofile.html', {
+            'customer': customer
+        })
+
+
+

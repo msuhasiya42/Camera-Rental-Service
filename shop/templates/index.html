@@ -24,11 +24,20 @@
           <div class="row mx-auto">
 <!--          all the products-->
               {% for product in products %}
+
     <div class="card mx-auto mb-3 mt-3" id="{{product.id}}" style="width: 18rem;">
-      <img src="{{product.image.url}}" alt="...">
+<!--        <form action="/#{{product.id}}">-->
+<!--            <input hidden name="product" type="text" value="{{product.id}}">-->
+            <img src="{{product.image.url}}" style="width: 16rem;" alt="...">
+<!--            <input type="submit" class="btn btn-info form-control" value="Product Details">-->
+<!--        </form>-->
+
        <div class="card-body ">
          <p class="card-title">{{product.name}}</p>
         <p class="card-text"><label style="color:green">Price :</label> {{product.price|currency}}</p>
+           {% if not product.available%}
+                 <p class="card-text"><label style="color:Red">Not Available </label></p>
+                {% endif %}
 
 <!--           it is filter for cart-->
 <!--           {{ product|isInCart:request.session.cart }}-->
@@ -37,36 +46,24 @@
 <!--        footer : contains the add to cart and quantity-->
         {% if product|isInCart:request.session.cart %}
         <div class="row " >
-<!--            minus button-->
-<!--            <form action="/#{{product.id}}" class="col-2" method="post">-->
-<!--                {% csrf_token %}-->
-<!--                <input hidden name="product" type="text" value="{{product.id}}">-->
-<!--                <input hidden name="product" type="text" value="True" name="remove">-->
-<!--                <input type="submit" value="Remove" class="btn btn-block btn-secondary">-->
+            <div class="d-flex justify-content-between"></div>
 
-<!--            </form>-->
-            <div class="d-flex justify-content-between">
+            <div class="text-center col"><label style="color:green"><a class="btn btn-warning" href="/cart/" role="button">Go to cart</a></label></div>
 
-                <!-- price details -->
-<!--                <p class="mb-0 mr-5"><span><strong id="summary">{{product.price}}</strong></span></p>-->
-              </div>
-
-            <div class="text-center col"><label style="color:green">Added into cart</label></div>
-
-            <!--            plus button
-<form action="/"class="col-2" method="post"> {% csrf_token %}-->
-<!--                <input hidden name="product" type="text" value="{{product.id}}">-->
-<!--                <input type="submit" value="+" class="btn btn-block btn-secondary">-->
-<!--            </form>-->
         </div>
         {% else %}
             <form action="/#{{product.id}}" method="post"> {% csrf_token %}
                <input hidden name="product" type="text" value="{{product.id}}">
-               <input href="#" type="submit" class="btn btn-primary form-control" value="Add to cart">
+                {% if product.available%}
+               <input href="#" type="submit" class="btn btn-primary form-control" value="Add to cart" >
+                {% else %}
+                <input href="#" type="submit" class="btn btn-primary form-control" value="Add to cart" disabled>
+                {% endif %}
            </form>
         {% endif %}
 
       </div>
+
 {% endfor %}
       </div>
       </div>

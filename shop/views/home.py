@@ -3,7 +3,7 @@
 # Create your views here.
 from django.shortcuts import render, redirect
 
-from shop.models.product import Product
+from shop.models.products import Products
 from shop.models.category import Category
 from django.views import View
 
@@ -23,9 +23,9 @@ class home(View):
         categoryID = request.GET.get('category')
 
         if categoryID:
-            products = Product.get_all_products_by_id(categoryID)
+            products = Products.get_all_products_by_id(categoryID)
         else:
-            products = Product.get_all_products()
+            products = Products.get_all_products()
 
         data = {}
         data['categories'] = categories

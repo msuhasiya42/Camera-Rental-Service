@@ -1,11 +1,11 @@
 from django.urls import path
 
 from . import views
-from .views.logout import logout
 from .views.regis import regis
-from .views.login import login,logout
+from .views.login import login,logout,userprofile
 from .views.home import home
 from .views.cart import Cart
+from .views.productDetails import productDetails
 from .views.checkout import Checkout
 from .views.orders import OrderView
 from shop.middlewares.auth import auth_middleware
@@ -19,6 +19,7 @@ urlpatterns = [
     path('cart/',Cart.as_view(), name='cart'),
     path('checkout/',Checkout.as_view(), name='checkout'),
     path('orders/', auth_middleware(OrderView.as_view()) , name='Orders'),
-
+    path('userprofile/', userprofile, name='userprofile'),
+    path('productDetails/', productDetails.as_view(), name='productDetails'),
 
 ]

@@ -1,0 +1,218 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!--loading filters-->
+{% load cart %}
+{% load custom_filter %}
+
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Product Details</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous"> -->
+    <!-- Bootstrap CSS-->
+
+    <!-- Font Awesome CSS-->
+
+    <!-- custom owl carousel css -->
+
+    <!-- theme stylesheet-->
+    <!-- theme color is changing from here. -->
+    <!-- <link rel="stylesheet" href="https://d19m59y37dris4.cloudfront.net/photo/1-5-0/css/style.default.css" id="theme-stylesheet"> -->
+    <!-- custom theme.css -->
+
+      <link rel="stylesheet" href="{% static 'theme.css'%}">
+  </head>
+
+    <div class="details-page">
+      <!-- Item details -->
+      <section class="item-details p-t-small p-b-small">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <div data-slider-id="1" class="owl-carousel ">
+                <div class="item"> <img src="https://d19m59y37dris4.cloudfront.net/photo/1-5-0/img/detail-2.jpg" alt="lens" style="width:25rem"></div>
+<!--                <div class="item"> <img src="https://d19m59y37dris4.cloudfront.net/photo/1-5-0/img/detail-1.jpg" alt="lens"></div>-->
+<!--                <div class="item"> <img src="https://d19m59y37dris4.cloudfront.net/photo/1-5-0/img/detail-3.jpg" alt="lens"></div>-->
+<!--                <div class="item"> <img src="https://d19m59y37dris4.cloudfront.net/photo/1-5-0/img/detail-4.jpg" alt="lens"></div>-->
+              </div>
+<!--              <div data-slider-id="1" class="owl-thumbs">-->
+<!--                <button class="owl-thumb-item"><img src="https://d19m59y37dris4.cloudfront.net/photo/1-5-0/img/detail-2-small.jpg" alt="lens"></button>-->
+<!--                <button class="owl-thumb-item"><img src="https://d19m59y37dris4.cloudfront.net/photo/1-5-0/img/detail-1-small.jpg" alt="lens"></button>-->
+<!--                <button class="owl-thumb-item"><img src="https://d19m59y37dris4.cloudfront.net/photo/1-5-0/img/detail-3-small.jpg" alt="lens"></button>-->
+<!--                <button class="owl-thumb-item"><img src="https://d19m59y37dris4.cloudfront.net/photo/1-5-0/img/detail-4-small.jpg" alt="lens"></button>-->
+<!--              </div>-->
+             <!--  <div class="brief">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore eligendi, hic illo, debitis similique maxime molestias voluptates sunt. Natus asperiores, unde dolorem nemo reprehenderit totam consequatur eos. Ipsa, voluptatibus, laborum.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore eligendi, hic illo, debitis similique maxime molestias voluptates sunt. Natus asperiores, unde dolorem nemo reprehenderit totam consequatur eos. Ipsa, voluptatibus, laborum.</p>
+              </div> -->
+            </div>
+            <div class="col-md-6">
+              <h1 class="h2">{{product.name}}</h1>
+              <div class="price d-flex justify-content-between align-items-center text-primary">{{product.price}}
+                <div class="d-flex justify-content-center">
+                  <ul class="rate list-inline">
+                    <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                    <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                    <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                    <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                    <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                  </ul><span>No Reviews</span>
+                </div>
+              </div>
+              <div class="model">
+                <ul class="list-unstyled">
+
+                  <li><span class="text-uppercase">Category: </span>{{product.category}}</li>
+                  <li><span class="text-uppercase">Availabile: </span>Yes or No </li>
+                </ul>
+              </div>
+              <div class="description">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+              </div>
+              <form action="#" method="get">
+                <div class="CTAs">
+                  <ul class="list-inline">
+                    <!-- <li class="list-inline-item">
+                      <button type="button" class="btn btn-primary ">Buy now</button>
+                    </li> -->
+                    <li class="list-inline-item">
+                      <!-- <a href="#" class="btn btn-light">Add to cart<i class="fa fa-shopping-cart pr-2"></i></a>  -->
+                      <button type="button" class="btn btn-primary"><i class="fa fa-shopping-cart pr-2"></i>Add to cart</button>
+                      <!-- <button type="button" class="btn btn-light btn-md mr-1 mb-2"><i class="fas fa-shopping-cart pr-2"></i>Add to cart</button> -->
+                    </li>
+                  </ul>
+                </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Related Items                         -->
+     <!--  <section class="related-items p-t-small p-b-small">
+        <div class="container">
+          <h3 class="heading-line">You May Also Like</h3>
+          <div class="row">
+                <div class="col-lg-3 col-md-6">
+                  <div class="item text-center">
+                    <div class="product-image"><img src="https://d19m59y37dris4.cloudfront.net/photo/1-5-0/img/detail-related-1.jpg" alt="camera" class="img-fluid">
+                      <div class="overlay p-0 d-flex align-items-center justify-content-center"><a href="#" class="wishlist"><i class="fa fa-heart"></i></a>
+                        <ul class="list-unstyled mb-0">
+                          <li><a href="#" class="btn btn-primary btn-sm px-4 mb-2">
+
+                              View Detail</a></li>
+                          <li><a href="#" class="btn btn-dark btn-sm">
+
+                              Add To Cart</a></li>
+                        </ul>
+                      </div>
+                    </div><a href="#" class="item-name">
+                      <h4 class="h6">EOS 7D Mark II EF-S 18 135mm</h4></a>
+                    <ul class="list-inline rate text-primary my-2">
+                      <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                      <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                      <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                      <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                      <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                    </ul>
+                    <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, ut, voluptas possimus magnam.</p>
+                    <ul class="price list-inline">
+                      <li class="list-inline-item"> <span class="price">$1.299</span></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                  <div class="item text-center">
+                    <div class="product-image"><span class="new badge badge-pill badge-info text-uppercase">new</span><img src="https://d19m59y37dris4.cloudfront.net/photo/1-5-0/img/detail-related-2.jpg" alt="camera" class="img-fluid">
+                      <div class="overlay p-0 d-flex align-items-center justify-content-center"><a href="#" class="wishlist"><i class="fa fa-heart"></i></a>
+                        <ul class="list-unstyled mb-0">
+                          <li><a href="#" class="btn btn-primary btn-sm px-4 mb-2">
+
+                              View Detail</a></li>
+                          <li><a href="#" class="btn btn-dark btn-sm">
+
+                              Add To Cart</a></li>
+                        </ul>
+                      </div>
+                    </div><a href="#" class="item-name">
+                      <h4 class="h6">EOS 7D Mark II EF-S 18 135mm</h4></a>
+                    <ul class="list-inline rate text-primary my-2">
+                      <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                      <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                      <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                      <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                      <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                    </ul>
+                    <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, ut, voluptas possimus magnam.</p>
+                    <ul class="price list-inline">
+                      <li class="list-inline-item"> <span class="price">$1.299</span></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                  <div class="item text-center">
+                    <div class="product-image"><img src="https://d19m59y37dris4.cloudfront.net/photo/1-5-0/img/detail-related-3.jpg" alt="camera" class="img-fluid">
+                      <div class="overlay p-0 d-flex align-items-center justify-content-center"><a href="#" class="wishlist"><i class="fa fa-heart"></i></a>
+                        <ul class="list-unstyled mb-0">
+                          <li><a href="#" class="btn btn-primary btn-sm px-4 mb-2">
+
+                              View Detail</a></li>
+                          <li><a href="#" class="btn btn-dark btn-sm">
+
+                              Add To Cart</a></li>
+                        </ul>
+                      </div>
+                    </div><a href="#" class="item-name">
+                      <h4 class="h6">EOS 7D Mark II EF-S 18 135mm</h4></a>
+                    <ul class="list-inline rate text-primary my-2">
+                      <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                      <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                      <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                      <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                      <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                    </ul>
+                    <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, ut, voluptas possimus magnam.</p>
+                    <ul class="price list-inline">
+                      <li class="list-inline-item"> <span class="price">$1.299</span></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                  <div class="item text-center">
+                    <div class="product-image"><img src="https://d19m59y37dris4.cloudfront.net/photo/1-5-0/img/detail-related-3.jpg" alt="camera" class="img-fluid">
+                      <div class="overlay p-0 d-flex align-items-center justify-content-center"><a href="#" class="wishlist"><i class="fa fa-heart"></i></a>
+                        <ul class="list-unstyled mb-0">
+                          <li><a href="#" class="btn btn-primary btn-sm px-4 mb-2">
+
+                              View Detail</a></li>
+                          <li><a href="#" class="btn btn-dark btn-sm">
+
+                              Add To Cart</a></li>
+                        </ul>
+                      </div>
+                    </div><a href="#" class="item-name">
+                      <h4 class="h6">EOS 7D Mark II EF-S 18 135mm</h4></a>
+                    <ul class="list-inline rate text-primary my-2">
+                      <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                      <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                      <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                      <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                      <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                    </ul>
+                    <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, ut, voluptas possimus magnam.</p>
+                    <ul class="price list-inline">
+                      <li class="list-inline-item"> <span class="price">$1.299</span></li>
+                    </ul>
+                  </div>
+                </div>
+          </div>
+        </div>
+      </section> -->
+    </div>
+    <!-- JavaScript files-->
+
+{% endblock %}

@@ -63,46 +63,12 @@
 </table>
 
   <div class="m-3 p-3">
-      <a href="#" class=" btn btn-outline-info border rounded ml-auto" data-toggle="modal" data-target="#exampleModal">Chekout</a>
+      <a href="/checkout/" class=" btn btn-outline-info border rounded ml-auto" >Checkout</a>
   </div>
     </div>
 </div>
 
-<!--modal-->
-<!-- Button trigger modal -->
 
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Checkout Form</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="m-2 p-3">
-            <form action="/checkout/" method="post"> {% csrf_token %}
-                <div class="form-group">
-                    <label >Address</label>
-                    <input type="text" name="address"  class="form-control" placeholder="" aria-describedby="helpId">
-                </div>
-                <div class="form-group">
-                    <label >Phone</label>
-                    <input type="text" name="phone" class="form-control" placeholder="" aria-describedby="helpId">
-                </div>
-                <div class="form-group">
-                    <label >Rent Date</label>
-                    <input type="date" name="rent_date" class="form-control" placeholder="" aria-describedby="helpId">
-                </div>
-                <div class="form-group">
-                    <label >Return Date</label>
-                    <input type="date" name="return_date" class="form-control" placeholder="" aria-describedby="helpId">
-                </div>
-
-                <input type="submit" value="Checkout" class="btn float-right btn-outline-info col-lg-6">
              </form>
         </div>
       </div>

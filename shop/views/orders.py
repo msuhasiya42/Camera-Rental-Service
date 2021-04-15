@@ -4,10 +4,10 @@ from django.views import View
 from shop.middlewares.auth import auth_middleware
 # import databases tables
 from django.shortcuts import render
-from shop.models.product import Product
+from shop.models.products import Products
 from shop.models.vendorCustomer import vendorCustomer
 from shop.models.userCustomer import userCustomer
-from shop.models.order import Order
+from shop.models.orders import Order
 from django.views import View
 from django.utils.decorators import method_decorator
 

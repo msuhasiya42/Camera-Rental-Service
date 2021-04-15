@@ -15,7 +15,6 @@
       <th scope="col">Product</th>
       <th scope="col">Rent Date</th>
       <th scope="col">Return Date</th>
-      <th scope="col">Price</th>
         <th scope="col">Total</th>
         <th scope="col">Status</th>
     </tr>
@@ -32,12 +31,12 @@
       <td>{{order.product.price|currency}}</td>
 <!--      <td>{{product|cart_quantity:request.session.cart}}</td>-->
 <!--        <td>{{order.product|price_total:request.session.cart|currency}}</td>-->
-        <td>{{order.quantity|multiply:order.price|currency}}</td>
+<!--        <td>{{order.quantity|multiply:order.price|currency}}</td>-->
 <!--        <td>{{order.order_status}}</td>-->
             {% if order.order_status %}
-              <td small class=" ">Completed</td>
+             <td><button type="button" class="btn btn-success" disabled>Completed</button></td>
             {% else %}
-              <td small class="">Pending</td>
+              <td><button type="button" class="btn btn-warning" disabled>Pending</button></td>
             {% endif %}
     </tr>
      {%endfor%}

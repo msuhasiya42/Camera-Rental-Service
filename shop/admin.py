@@ -4,11 +4,11 @@ from django.contrib import admin
 from django.contrib import admin
 
 #importing model from the folder model
-from .models.product import Product
+from .models.products import Products
 from .models.category import Category
 from .models.vendorCustomer import vendorCustomer
 from .models.userCustomer import userCustomer
-from .models.order import Order
+from .models.orders import Order
 
 
 class AdminProduct(admin.ModelAdmin):
@@ -17,7 +17,7 @@ class AdminProduct(admin.ModelAdmin):
     ]
 
 # Register your models here.
-admin.site.register(Product,AdminProduct)
+admin.site.register(Products, AdminProduct)
 admin.site.register(Category)
 admin.site.register(vendorCustomer)
 admin.site.register(userCustomer)

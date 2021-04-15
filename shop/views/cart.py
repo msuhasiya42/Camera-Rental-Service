@@ -10,7 +10,7 @@ from django.http import HttpResponse
 
 # Create your views here.
 from django.shortcuts import render
-from shop.models.product import Product
+from shop.models.products import Products
 from shop.models.category import Category
 from shop.models.vendorCustomer import vendorCustomer
 from shop.models.userCustomer import userCustomer
@@ -21,7 +21,7 @@ class Cart(View):
 
     def get(self, request):
         ids = list(request.session.get('cart').keys())
-        products = Product.get_products_by_id(ids)
+        products = Products.get_products_by_id(ids)
         print(products)
         return render(request, 'cart.html',{'cart': products })
 
