@@ -23,8 +23,8 @@ class Checkout(View):
         return_date = request.POST.get('return_date')
         address = request.POST.get('address')
         pincode = request.POST.get('pincode')
-        city= request.POST.get('city')
-        state= request.POST.get('state')
+        city = request.POST.get('city')
+        state = request.POST.get('state')
         customer = request.session.get('username')
 
         cart = request.session.get('cart')
@@ -34,6 +34,7 @@ class Checkout(View):
         print(address, phone, customer, cart, products,city,state,rent_date,return_date,firstname,lastname)
 
         for product in products:
+            image = product.image
             order = Order(
                 product=product,
                 # send email to usercustomer table and
@@ -51,9 +52,15 @@ class Checkout(View):
                 rent_date=rent_date,
                 return_date=return_date)
 
+            # to update the details in db
+            product.available  = False
+            product.save()
+
             order.placeOrder()
+
 
 
         print(products)
         request.session['cart'] = {}
         return redirect('Orders')
+
