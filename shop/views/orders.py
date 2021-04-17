@@ -27,6 +27,11 @@ class OrderView(View):
                 print(order.order_status)
                 p.available = True
                 p.save()
+            else:
+                print(order.order_status)
+                p.available = False
+                p.save()
+
         orders = orders.reverse()
         return render(request, 'orders.html',
                       {

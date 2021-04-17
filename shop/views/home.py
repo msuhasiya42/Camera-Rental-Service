@@ -11,6 +11,22 @@ from django.views import View
 
 class home(View):
     def get(self, request):
+        # to update the availability of order based on the order
+        email = request.session.get('username')
+        orders = Order.get_orders_by_customer(email)
+        print("orders:", orders)
+        for order in orders:
+            product = Products.get_product_by_name(order)
+            print("product:", product[0])
+            p = product[0]
+            if order.order_status == True:
+                print(order.order_status)
+                p.available = True
+                p.save()
+            else:
+                print(order.order_status)
+                p.available = False
+                p.save()
 
         # if there is no cart in session
         cart = request.session.get('cart')
@@ -47,6 +63,8 @@ class home(View):
         product = request.POST.get('product')
         remove = request.POST.get('remove')
         cart = request.session.get('cart')
+
+
         # item is added to cart and value is set to 1
         if cart:
             quantity = cart.get(product)
