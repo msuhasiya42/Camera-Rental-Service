@@ -53,6 +53,7 @@ class Checkout(View):
                 return_date=return_date)
 
             # to update the details in db
+            print("product in ck:",product)
             product.available  = False
             product.save()
 

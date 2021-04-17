@@ -18,7 +18,16 @@ class OrderView(View):
     def get(self, request):
         email = request.session.get('username')
         orders = Order.get_orders_by_customer(email)
-        # orders = orders.reverse()
+        print("orders:",orders)
+        for order in orders:
+            product= Products.get_product_by_name(order)
+            print("product:",product[0])
+            p = product[0]
+            if order.order_status == True:
+                print(order.order_status)
+                p.available = True
+                p.save()
+        orders = orders.reverse()
         return render(request, 'orders.html',
                       {
                           'orders': orders

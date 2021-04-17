@@ -11,7 +11,7 @@
   <thead>
     <tr>
       <th scope="col">Sno</th>
-        <th scope="col">Image</th>
+        <th scope="col">Photo</th>
       <th scope="col">Product</th>
       <th scope="col">Rent Date</th>
       <th scope="col">Return Date</th>
@@ -36,7 +36,7 @@
             {% if order.order_status %}
              <td><button type="button" class="btn btn-success" disabled>Completed</button></td>
             {% else %}
-              <td><button type="button" class="btn btn-warning" disabled>Pending</button></td>
+              <td><button type="button" class="btn btn-warning" disabled>Placed(COD)</button></td>
             {% endif %}
     </tr>
      {%endfor%}

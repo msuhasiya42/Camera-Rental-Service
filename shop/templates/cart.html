@@ -3,8 +3,10 @@
 {% block content %}
 <!--loading filters-->
 {% load cart %}
+{% load static %}
 {% load custom_filter %}
-
+<link rel="stylesheet" type="text/css"  href="{% static 'home1.css' %}">
+{% if cart%}
 <div class="container bg-light">
     <div class="border rounded p-4 m-4 bg-light">
       <p class="text-center pl-4 ml-4 display-4">Your Cart</p>
@@ -20,6 +22,8 @@
   </thead>
 
   <tbody>
+
+
         {% for product in cart %}
     <tr class="">
       <td >{{forloop.counter}}</td>
@@ -52,6 +56,8 @@
     </tr>
      {%endfor%}
 
+
+
   </tbody>
             <tfoot>
               <tr>
@@ -76,5 +82,8 @@
     </div>
   </div>
 </div>
+{%else%}
+      <h1 class="text-center " style="margin-top:150px; font-family: 'Sofia';font-size: 50px;">Your cart is Empty <img src="{% static 'emptycart.png' %}" alt="" style="width:60px">  </h1>
 
+     {%endif%}
 {% endblock %}

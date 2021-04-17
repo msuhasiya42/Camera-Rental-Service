@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 
 from shop.models.products import Products
 from shop.models.category import Category
+from shop.models.orders import Order
 from django.views import View
 
 
@@ -22,6 +23,8 @@ class home(View):
         # to get product by category id from the url
         categoryID = request.GET.get('category')
 
+        orders = Order.get_all_orders()
+
         if categoryID:
             products = Products.get_all_products_by_id(categoryID)
         else:
@@ -30,6 +33,9 @@ class home(View):
         data = {}
         data['categories'] = categories
         data['products'] = products
+        # # to get all the orders
+        # data['orders'] = orders
+
         if request.session.get('vendorname'):
             print("you are:", request.session.get('vendorname'))
         else:

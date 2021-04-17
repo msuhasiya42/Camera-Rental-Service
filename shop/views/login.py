@@ -18,7 +18,7 @@ from django.views import View
 
 
 class login(View):
-    return_url = None
+    # return_url = None
 
     def get(self, request):
         login.return_url = request.GET.get('return_url')
@@ -31,50 +31,50 @@ class login(View):
         password = request.POST.get('password')
 
         if usertype == 'vendor':
-            customer = vendorCustomer.get_customer_by_email(email)
+
             # checks email from the databases with form email
+            if vendorCustomer.isExist2(email):
+                customer = vendorCustomer.get_customer_by_email(email)
+                # to check password from the DB
+                flag = check_password(password, customer.password)
+                if flag:
+                    vendorname = customer.full_name
+                    email = customer.email
+                    # to create session we can also use other attribute
+                    # rather than name
+                    request.session["vendorname"] = email
 
-            print(customer)
-            # to check password from the DB
-            flag = check_password(password, customer.password)
-            if flag:
-                vendorname = customer.full_name
-                email = customer.email
-                # to create session we can also use other attribute
-                # rather than name
-                request.session["vendorname"] = email
-
-                if login.return_url:
-                    return HttpResponseRedirect(login.return_url)
-                else:
-                    login.return_url = None
+                    # if login.return_url:
+                    #     return HttpResponseRedirect(login.return_url)
+                    # else:
+                        # login.return_url = None
                     return redirect('home')
+
             else:
                 errormessage = 'Invalid Email or Password'
                 return render(request, 'login.html', {
                     'error': errormessage
                 })
         elif usertype == 'user':
-            customer = userCustomer.get_customer_by_email(email)
-            print(customer)
             # checks email from the databases with form email
-
-            flag = check_password(password, customer.password)
-            if flag:
-                username = customer.full_name
-                email = customer.email
-                request.session["username"] = email
-                if login.return_url:
-                    return HttpResponseRedirect(login.return_url)
-                else:
-                    login.return_url = None
+            if userCustomer.isExist1(email):
+                customer = userCustomer.get_customer_by_email(email)
+                flag = check_password(password, customer.password)
+                if flag:
+                    username = customer.full_name
+                    email = customer.email
+                    request.session["username"] = email
+                    # if login.return_url:
+                    #     return HttpResponseRedirect(login.return_url)
+                    # else:
+                        # login.return_url = None
                     return redirect('home')
 
-            else:
-                errormessage = 'Invalid Email or Password'
-                return render(request, 'login.html', {
-                    'error': errormessage
-                })
+                else:
+                    errormessage = 'Invalid Email or Password'
+                    return render(request, 'login.html', {
+                        'error': errormessage
+                    })
 
         else:
             errormessage = 'Invalid Email or Password'

@@ -34,6 +34,11 @@ class Order(models.Model):
     def placeOrder(self):
         self.save()
 
+
+    @staticmethod
+    def get_all_orders():
+        return Order.objects.all()
+
     @staticmethod
     def get_orders_by_customer(customer_id):
         return Order.objects.filter(customer=customer_id).order_by('rent_date')
