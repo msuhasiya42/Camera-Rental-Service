@@ -48,7 +48,7 @@ class login(View):
                     #     return HttpResponseRedirect(login.return_url)
                     # else:
                         # login.return_url = None
-                    return redirect('home')
+                    return redirect('vendorpage')
 
             else:
                 errormessage = 'Invalid Email or Password'
@@ -88,6 +88,11 @@ def logout(request):
     request.session.clear()
     return redirect('login')
 
+def contactus(request):
+    return render(request,'contactus.html')
+
+def aboutus(request):
+    return render(request,'aboutus.html')
 
 def userprofile(request):
     if request.session.get('vendorname'):

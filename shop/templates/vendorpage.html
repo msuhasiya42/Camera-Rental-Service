@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load cart %}
+{% load custom_filter %}
+
+    <div class="container">
+
+      <div class="row p-3">
+
+        <div class="col-lg-8">
+
+          <h3 class="mb-3" style="text-align: center;">Add your product</h3>
+          <hr class="mb-2">
+          <br>
+          <form action="/vendorpage/" method = "post"> {% csrf_token %}
+
+            <div class="row mb-3">
+                <div class="col-12">
+                <label ><h3>Product Details</h3></label>
+              </div>
+              <br>
+              <div class="col-md-6 mb-2">
+                <input type="text" class="form-control" name="productname" placeholder="Product Name" required>
+              </div>
+                <div class="col-md-6 mb-2">
+                <label ><h5>Product Photo</h5></label> <input id="id_docfile" type="file"   name="photo" accept="image/*" required> <br>
+              </div>
+                <div class="col-md-6 mb-2">
+
+                <input type="text" class="form-control" name="Price" placeholder="Price" required>
+              </div>
+              <div class="col-12 mb-2">
+
+                <input type="text" class="form-control" name="description" placeholder="Description (Write about the condition of product)"style="padding: 15px 0 50px 5px;" required>
+              </div>
+              <div class="col-12 mb-2">
+                <label ><h5>Category</h5></label>
+                <select id="category" name="category">
+                   <option value="200D">200D</option>
+                   <option value="700D">700D</option>
+                   <option value="1300D">1300D</option>
+                   <option value="Mobiles">Mobiles</option>
+
+                 </select>
+              </div>
+              <div class="col-12"><br>
+                <label ><h3 style="">Owner Details</h3></label>
+              </div>
+              <br>
+              <div class="col-md-6 mb-2">
+                <label><h5>Full Name </h5></label>
+                <input type="text" class="form-control" name="fullname" placeholder="Full Name" required>
+              </div>
+              <!-- <div class="col-md-6 mb-3">
+                <input type="text" class="form-control" id="mobileno" placeholder="10-digit mobile number" required>
+              </div> -->
+            </div>
+
+
+            <div class="row mb-3">
+              <div class="col-md-6 mb-2">
+                <label><h5>Mobile</h5></label>
+                <input type="text" class="form-control" name="phone" placeholder="10-digit mobile number" required>
+              </div>
+
+            </div>
+
+            <div class="row">
+              <div class="col-12">
+                <label><h5>Address</h5></label>
+              </div>
+
+              <div class="col-12 mb-2">
+                <input type="text" class="form-control" name="address" placeholder="Address (Area and Street)"style="padding: 15px 0 50px 5px;" required>
+              </div>
+
+              <div class="col-md-6 mb-2">
+                <input type="text" class="form-control" name="pincode" placeholder="Pincode" required>
+              </div>
+
+              <div class="col-md-6 mb-2">
+                <input type="text" class="form-control" name="city" placeholder="City/District/Town" required>
+              </div>
+
+              <div class="col-md-6 mb-2">
+                <select class="custom-select" name="state"  required>
+                  <option value="">State</option>
+                  <option>Gujarat</option>
+                </select>
+              </div>
+            </div>
+
+            <hr class="mb-4">
+
+            <button class="btn btn-warning btn-lg btn-block" style="margin-right:20px;" type="submit">Add product</button>
+          </form>
+        </div>
+
+      <div style="margin-left: auto; margin-right: auto; text-align: center;">
+
+      </div>
+    </div>
+
+
+</div>
+
+
+
+
+
+{% endblock %}

@@ -82,8 +82,10 @@
     </div>
   </div>
 </div>
-{%else%}
-      <h1 class="text-center " style="margin-top:150px; font-family: 'Sofia';font-size: 50px;">Your cart is Empty <img src="{% static 'emptycart.png' %}" alt="" style="width:60px">  </h1>
 
-     {%endif%}
+{%else%}
+     <h1 class="text-center " style="margin-top:150px; margin-bottom:200px; font-family: 'Sofia';font-size: 50px;">Your cart is Empty <img src="{% static 'emptycart.png' %}" alt="" style="width:60px">  </h1>
+
+{%endif%}
+
 {% endblock %}

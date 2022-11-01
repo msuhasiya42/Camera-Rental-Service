@@ -8,12 +8,28 @@ class Products(models.Model):
     image = models.ImageField(upload_to='upload/products/',null=True,blank=True)
     #cascade -> if we delete category then all products of that category will be deleted
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default=1)
+
+    # owner name and vendor email
+    owner = models.CharField(max_length=50,null=True)
+    vendor_email = models.EmailField(max_length=50,null=True)
+
+    # mobile no and address
+    phone = models.CharField(max_length=15,null=True)
+    address = models.CharField(max_length=100, default="", null=True)
+    city = models.CharField(max_length=50, default='', null=True)
+    pincode = models.IntegerField(null=True)
+    state = models.CharField(max_length=20, default='', null=True)
+    # availability status
     available = models.BooleanField(default=True)
+
 
     def __str__(self):
         return self.name
 
     def unAvail(self):
+        self.save()
+
+    def addProduct(self):
         self.save()
 
     @staticmethod

@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-
 {% block content %}
 {% load static %}
   <!--card-->
@@ -9,7 +8,9 @@
 <div class="container-fluid mt-3">
   <div class="row">
 <!-- filter-->
+
       <div class="col-lg-2 mx-auto">
+          <p style=" font-family: 'Stylish'; font-size: 20px; margin-left:40px;" class="  text-white ">Categories</p>
           <a href="/?category={{category.id}}" class="list-group-item list-group-item-action bg-dark text-white " style=" font-family: 'Stylish'; font-size: 20px">All products</a>
           <div class="list-group ">
 
@@ -39,6 +40,7 @@
        <div class="card-body " style="background-color:#dce8e0;">
          <p class="card-title" style="font-family: 'Open Sans', sans-serif;">{{product.name}}</p>
         <p class="card-text"><label style="color:green; font-family: 'Open Sans', sans-serif; ">Price :</label> {{product.price|currency}}</p>
+        <p class="card-text"><label style="color:green; font-family: 'Open Sans', sans-serif; ">Description :</label> {{product.description}}</p>
            {% if not product.available%}
                  <p class="card-text" style="font-family: 'Open Sans', sans-serif;"><label style="color:Red">Not Available </label></p>
                 {% endif %}
@@ -57,9 +59,12 @@
         </div>
         {% else %}
             <form action="/#{{product.id}}" method="post"> {% csrf_token %}
-               <input hidden name="product" type="text" value="{{product.id}}">
-                {% if product.available%}
-               <input href="#" type="submit" class="btn btn-primary mb-3 form-control" value="Add to cart" >
+
+                <input hidden name="product" type="text" value="{{product.id}}">
+                {% if request.session.vendorname %}
+                <input href="#" type="submit" class="btn btn-primary mb-3 form-control" value="Add to cart" disabled>
+                {% elif product.available%}
+               <input href="#" type="submit" class="btn btn-primary mb-3 form-control" style="color : black" value="Add to cart" >
                 {% else %}
                 <input href="#" type="submit" class="btn btn-primary mb-3 form-control" value="Add to cart" disabled>
                 {% endif %}
